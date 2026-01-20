@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Práctica 2: Retención de Idiomas</title>
+    
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 50px; background-color: #f4f4f4; }
+        .lang-btn { padding: 15px 25px; font-size: 18px; cursor: pointer; margin: 10px; border-radius: 5px; border: none; background: white; shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .lang-btn:hover { background-color: #e0e0e0; }
+        #content-area { margin-top: 40px; font-size: 28px; color: #333; font-weight: bold; background: white; padding: 20px; border-radius: 10px; display: inline-block;}
+    </style>
+</head>
+<body>
+
+    <h1>Selector de Idioma / Language / 言語</h1>
+    <p>Lee el texto y cambia de idioma. Google medirá cuánto tardaste.</p>
+
+    <button class="lang-btn" onclick="cambiarIdioma('es')">🇪🇸 Español</button>
+    <button class="lang-btn" onclick="cambiarIdioma('en')">🇺🇸 English</button>
+    <button class="lang-btn" onclick="cambiarIdioma('fr')">🇫🇷 Français</button>
+    <button class="lang-btn" onclick="cambiarIdioma('jp')">🇯🇵 日本語</button>
+
+    <div id="content-area">Hola, bienvenido a la prueba.</div>
+
+    <script>
+        // --- LÓGICA DEL CRONÓMETRO ---
+        let idiomaActual = 'es';
+        let tiempoInicio = Date.now(); 
+
+        const textos = {
+            'es': 'Hola, bienvenido a la prueba.',
+            'en': 'Hello, welcome to the test.',
+            'fr': 'Bonjour, bienvenue au test.',
+            'jp': 'こんにちは、テストへようこそ。' 
+        };
+
+        function cambiarIdioma(nuevoIdioma) {
+            if (nuevoIdioma === idiomaActual) return; 
+
+            // 1. MATEMÁTICAS: Calcular tiempo transcurrido
+            let tiempoFin = Date.now();
+            let segundos = Math.round((tiempoFin - tiempoInicio) / 1000);
+
+            console.log(`Usuario estuvo en ${idiomaActual} por ${segundos} segundos.`);
+
+            // 2. ENVÍO A GA4: Mezclamos Dimensiones y Métricas
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'cambio_de_idioma', {
+                    'idioma_anterior': idiomaActual,    // Dimensión
+                    'idioma_nuevo': nuevoIdioma,        // Dimensión
+                    'tiempo_en_idioma': segundos        // Métrica (¡Número!)
+                });
+            }
+
+            // 3. ACTUALIZAR INTERFAZ
+            document.getElementById('content-area').innerText = textos[nuevoIdioma];
+            idiomaActual = nuevoIdioma;
+            tiempoInicio = Date.now(); // Reiniciar reloj
+        }
+    </script>
+</body>
+</html>
