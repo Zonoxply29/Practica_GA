@@ -10,6 +10,16 @@
         .lang-btn:hover { background-color: #e0e0e0; }
         #content-area { margin-top: 40px; font-size: 28px; color: #333; font-weight: bold; background: white; padding: 20px; border-radius: 10px; display: inline-block;}
     </style>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TKX64KPJ7B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-TKX64KPJ7B');
+    </script>
 </head>
 <body>
 
@@ -26,7 +36,7 @@
     <script>
         // --- LÓGICA DEL CRONÓMETRO ---
         let idiomaActual = 'es';
-        let tiempoInicio = Date.now(); 
+        let tiempoInicio = Date.now();
 
         const textos = {
             'es': 'Hola, bienvenido a la prueba.',

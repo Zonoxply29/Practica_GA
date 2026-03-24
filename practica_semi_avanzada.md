@@ -104,6 +104,12 @@ En la pestaña **Dimensiones personalizadas**, crea estas DOS:
 2. **Nombre:** Idioma Nuevo  
    **Parámetro:** `idioma_nuevo`
 
+
+## QUE SON LAS METRICAS PERSONALIZADAS
+
+* Son variables numéricas creadas por el analista en GA4 para medir **comportamientos específicos del sitio (por ejemplo, segundos, puntos, intentos).**
+ * Se usan porque permiten cálculos agregados (suma, promedio, tendencias) y análisis de rendimiento. En este caso, `tiempo_en_idioma` se usa para medir retención: cuánto tiempo permanece un usuario en un idioma antes de cambiar.
+
 ### B. Configurar Métricas (Números)
 
 En la pestaña **Métricas personalizadas**, crea:
